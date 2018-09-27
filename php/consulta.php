@@ -55,7 +55,10 @@ if ($buscarRelevamientos->num_rows > 0)
 			</td>
 
 			
-			<td><a href='php/reporte.php?id_rel=".$filaRelevamientos['idRelev']."'><button class='btn btn-info'>Ver</button></a></td>
+			<td>
+				<a href='php/reporte.php?id_rel=".$filaRelevamientos['idRelev']."'><button class='btn btn-info'>Ver</button></a>
+				<a href='php/reporte_pdf.php?id_rel=".$filaRelevamientos['idRelev']."'><button class='btn btn-danger'>PDF</button></a>
+			</td>
 
 		 </tr>
 		";

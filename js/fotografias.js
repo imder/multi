@@ -63,11 +63,13 @@ var $video = document.getElementById("video"),
 	$estado = document.getElementById("estado");
 if (tieneSoporteUserMedia()) {
     _getUserMedia(
-        {video: true},
+		{video: { width: 1280, height: 720 }},
         function (stream) {
             console.log("Permiso concedido");
 			$video.srcObject = stream;
 			$video.play();
+
+			//mas propiedades puede haber
 
 			//Escuchar el click
 			$boton.addEventListener("click", function(){
@@ -81,7 +83,7 @@ if (tieneSoporteUserMedia()) {
 				$canvas.height = $video.videoHeight;
 				contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
 
-				var foto = $canvas.toDataURL(); //Esta es la foto, en base 64
+				var foto = $canvas.toDataURL('image/jpeg', 0.8); //Esta es la foto, en base 64
 				$estado.innerHTML = "Enviando foto. Por favor, espera...";
 				var xhr = new XMLHttpRequest();
 				xhr.open("POST", "php/guardar_foto.php", true);
@@ -92,7 +94,7 @@ if (tieneSoporteUserMedia()) {
 				    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
 				        console.log("La foto fue enviada correctamente");
 				        console.log(xhr);
-				        $estado.innerHTML = "Foto guardada con éxito. Puedes verla <a target='_blank' href='php/" + xhr.responseText + "'> aquí</a>";
+				        $estado.innerHTML = "Foto guardada con éxito.";
 				    }
 				}
 

@@ -3,14 +3,20 @@
 include("conexion.php");///*
 
 $data = $_REQUEST['base64data']; 
-$image = explode('base64,',$data);
+$imagen = explode('base64,',$data);
+$imagendata = base64_decode($imagen[1]);
+//$source = imagecreatefromstring($imagendata);
+//$rotate = imagerotate($source, 90, 0); 
+$nombreImagenGuardada = "../planos/plano_" . uniqid().".jpg";
 
+
+//$imagenjpg = imagejpeg($rotate,$nombreImagenGuardada,100);
 //Calcular un nombre único
-$nombreImagenGuardada = "../planos/plano_" . uniqid() . ".png";
+//$nombreImagenGuardada = "../planos/plano_" . uniqid() . ".png";
 
 print_r($nombreImagenGuardada );
 //Escribir el archivo
-file_put_contents($nombreImagenGuardada, base64_decode($image[1])); 
+file_put_contents($nombreImagenGuardada, $imagendata); 
 
 
 $p_sql = "SELECT MAX(id) FROM ambientes"; 

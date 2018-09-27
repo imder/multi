@@ -308,7 +308,7 @@ $us_row = mysqli_fetch_array($us_result);
 
 <?php 
    }
-   $m_sql="SELECT SUM(ancho) as S_ANCHO ,SUM(largo) as S_LARGO ,SUM(altura) as S_ALTO from ambientes where fk_idRelev='$id_relev'";
+   $m_sql="SELECT ROUND(SUM(ancho),2) as S_ANCHO ,ROUND(SUM(largo),2) as S_LARGO , ROUND(SUM(altura),2) as S_ALTO from ambientes where fk_idRelev='$id_relev'";
    $m_result=mysqli_query($conexion,$m_sql)or die(mysqli_error());
    $m_row = mysqli_fetch_array($m_result); 
 
@@ -329,9 +329,9 @@ $t_res=mysqli_query($conexion,$t_ambien)or die(mysqli_error());
     ?>  
         <tr>
             <td><?php echo $nomAmbiente; ?></td>
-            <td><?php echo $t_amb['ancho']; ?></td>
-            <td><?php echo $t_amb['largo']; ?></td>
-            <td><?php echo $t_amb['altura']; ?></td>
+            <td><?php echo $t_amb['ancho']." mts."; ?></td>
+            <td><?php echo $t_amb['largo']." mts."; ?></td>
+            <td><?php echo $t_amb['altura']." mts."; ?></td>
         </tr>
 
     
@@ -340,9 +340,9 @@ $t_res=mysqli_query($conexion,$t_ambien)or die(mysqli_error());
 ?>  
        <tr>
             <td>TOTAL</td>
-            <td><?php echo $m1; ?></td>
-            <td><?php echo $m2; ?></td>
-            <td><?php echo $m3; ?></td>
+            <td><?php echo $m1." mts."; ?></td>
+            <td><?php echo $m2." mts."; ?></td>
+            <td><?php echo $m3." mts."; ?></td>
         </tr> 
         </table>
     </div>
